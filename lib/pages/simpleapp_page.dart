@@ -17,7 +17,7 @@ class _SimpleAppPageState extends State<SimpleAppPage> {
           builder: (context) {
             return IconButton(
               onPressed: () {
-                client.auth.signOut();
+                supabase.auth.signOut();
                 Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
               }, 
               icon: const Icon(Icons.logout),
@@ -45,7 +45,7 @@ class _SimpleAppPageState extends State<SimpleAppPage> {
             ),
             
             Text(
-              'Hello! ${client.auth.currentUser?.email}',
+              'Hello! ${supabase.auth.currentUser?.email}',
               style: TextStyle(
                 color: Colors.blueGrey,
                 fontSize: 17,

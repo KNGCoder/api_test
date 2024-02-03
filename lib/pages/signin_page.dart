@@ -1,5 +1,6 @@
 import 'package:api_test/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -19,11 +20,13 @@ class _SignInPageState extends State<SignInPage> {
     required final String email,
     required final String password,
   }) async {
-    final response = await client.auth.signIn(
+    final AuthResponse res = await supabase.auth.signInWithPassword(
       email: email,
       password: password,
     );
-    final user = response.data?.user;
+    //final pin = await supabase.auth.reauthenticate();
+
+    final user = res.user;
     return user?.id;
   }
 

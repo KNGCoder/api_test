@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:api_test/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,21 +18,25 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   ///[createUser] function that user creation
-  Future<bool> createUser({
+  FutureOr<bool?> createUser({
     required final String email,
     required final String password,
 
   }) async {
-    final response = await client.auth.signUp(
-      email, 
-      password,
+    final AuthResponse res = await supabase.auth.signUp(
+      email: email, 
+      password: password,
+      // data: {'username': 'my_user_name'},
       );
-      final error = response.error;
-      if (error == null) {
-        return true;
-      } else {
-        return false;
-      }
+      // final Session? session = res.session;
+      // final User? user = res.user;
+
+      // final error = res.error;
+      // if (error == null) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
   }
 
   @override
@@ -58,7 +66,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextFormField(
                 controller:  _passwordController,
                 decoration: const InputDecoration(label: Text('Password'),),
-                obscureText: true,
+                // obscureText: true,
               ),
               
             ),

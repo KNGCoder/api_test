@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 ///[client] for Supabase instance
-final client = Supabase.instance.client;
+final supabase = Supabase.instance.client;
 
 
 ///small Gap
